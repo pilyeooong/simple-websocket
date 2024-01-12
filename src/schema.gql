@@ -1,0 +1,15 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CryptoCurrency {
+  id: ID!
+  symbol: String!
+  base: String!
+  counter: String!
+  price: Float!
+}
+
+type Query {
+  sayHello: CryptoCurrency!
+}
