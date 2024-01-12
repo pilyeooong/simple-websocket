@@ -11,5 +11,13 @@ type CryptoCurrency {
 }
 
 type Query {
-  cryptoCurrency: CryptoCurrency!
+  cryptoCurrency(base: String!, counter: String!): CryptoCurrency!
+}
+
+type Mutation {
+  publishCryptoCurrencyPrice(base: String!, counter: String!): CryptoCurrency!
+}
+
+type Subscription {
+  subscribeCryptoCurrencyPrice(base: String!, counter: String!): CryptoCurrency!
 }
