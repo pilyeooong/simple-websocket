@@ -9,13 +9,21 @@ const pubSub = new PubSub();
 export class CryptoCurrenciesResolver {
   constructor(private cryptoCurrenciesService: CryptoCurrenciesService) {}
 
-  private createDummy(base: string, counter: string): CryptoCurrency {
+  private createDummy({
+    base = 'BTC',
+    counter = 'KRW',
+    price = 123456,
+  }: {
+    base?: string;
+    counter?: string;
+    price?: number;
+  }): CryptoCurrency {
     return {
       id: 'id',
       symbol: base,
       base: base,
       counter: counter,
-      price: 123456,
+      price: price,
     };
   }
 
@@ -24,7 +32,7 @@ export class CryptoCurrenciesResolver {
     @Args('base', { type: () => String }) base: string,
     @Args('counter', { type: () => String }) counter: string,
   ) {
-    return this.createDummy(base, counter);
+    return this.createDummy({ base, counter });
   }
 
   @Mutation((_) => CryptoCurrency)
@@ -33,11 +41,10 @@ export class CryptoCurrenciesResolver {
     @Args('counter', { type: () => String }) counter: string,
   ) {
     const price = Math.floor(Math.random() * 100000);
-    const dummy = this.createDummy(base, counter);
-    dummy.price = price;
-    pubSub.publish(`${base}-${counter}`, dummy);
+    const cryptoCurrency = this.createDummy({ base, counter, price });
+    pubSub.publish(`${base}-${counter}`, cryptoCurrency);
 
-    return dummy;
+    return cryptoCurrency;
   }
 
   @Subscription((_) => CryptoCurrency, {
