@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -8,6 +9,9 @@ import { join } from 'path';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: false,
+    }),
     CryptoCurrenciesModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
