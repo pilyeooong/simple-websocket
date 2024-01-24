@@ -12,12 +12,12 @@ import { join } from 'path';
     ConfigModule.forRoot({
       ignoreEnvFile: false,
     }),
-    CryptoCurrenciesModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       installSubscriptionHandlers: true,
     }),
+    CryptoCurrenciesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
