@@ -3,7 +3,7 @@ name: push docker image to AWS ECR
 on:
   push:
     branches:
-      - master
+      - ['prd']
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
