@@ -1,12 +1,11 @@
 import { Args, Resolver, Subscription } from '@nestjs/graphql';
-import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
+import { Inject } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-
-const pubSub = new RedisPubSub();
+import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
 
 @Resolver((_) => CryptoCurrency)
 export class SubscribeCryptoCurrencyPriceResolver {
-  constructor() {}
+  constructor(@Inject('PUB_SUB') private pubSub: RedisPubSub) {}
 
   @Subscription((_) => CryptoCurrency, {
     resolve: (payload) => payload,
@@ -16,6 +15,6 @@ export class SubscribeCryptoCurrencyPriceResolver {
     @Args('base', { type: () => String }) base: string,
     @Args('counter', { type: () => String }) counter: string,
   ) {
-    return pubSub.asyncIterator(`${base}-${counter}`);
+    return this.pubSub.asyncIterator(`${base}-${counter}`);
   }
 }

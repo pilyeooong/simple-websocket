@@ -4,13 +4,14 @@ import { CryptoCurrenciesService } from './crypto-currencies.service';
 import { UpbitModule } from '../external/upbit/upbit.module';
 import { SubscribeCryptoCurrencyPriceResolver } from 'src/crypto-currencies/subscriptions/subscribe-crypto-currency-price.resolver';
 import { PublishCryptoCurrencyPriceResolver } from 'src/crypto-currencies/mutations/publish-crypto-currency-price.resolver';
+import { PubSubModule } from 'src/common/pub-sub/pub-sub.module';
 
 const mutations = [PublishCryptoCurrencyPriceResolver];
 const queries = [CryptoCurrencyDetailResolver];
 const subscriptions = [SubscribeCryptoCurrencyPriceResolver];
 
 @Module({
-  imports: [UpbitModule],
+  imports: [UpbitModule, PubSubModule],
   providers: [
     CryptoCurrenciesService,
     ...mutations,

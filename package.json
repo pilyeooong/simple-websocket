@@ -35,6 +35,7 @@
     "graphql": "^16.8.1",
     "graphql-redis-subscriptions": "^2.6.0",
     "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.14.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "uuidv4": "^6.2.13"
