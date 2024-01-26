@@ -11,7 +11,7 @@ type CryptoCurrency {
 }
 
 type Query {
-  cryptoCurrency(base: String!, counter: String!): CryptoCurrency!
+  cryptoCurrencyDetail(base: String!, counter: String!): CryptoCurrency!
 }
 
 type Mutation {
@@ -19,5 +19,5 @@ type Mutation {
 }
 
 type Subscription {
-  subscribeCryptoCurrencyPrice(base: String!, counter: String!): CryptoCurrency!
+  subscribeCryptoCurrencyPrice(base: String!, counter: String!): CryptoCurrency
 }
