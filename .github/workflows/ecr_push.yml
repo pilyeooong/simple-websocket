@@ -3,7 +3,6 @@ name: push docker image to AWS ECR
 on:
   push:
     branches:
-      - master
       - prd
 
 env:
