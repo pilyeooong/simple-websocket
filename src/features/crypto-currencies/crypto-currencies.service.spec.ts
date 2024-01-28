@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CryptoCurrenciesService } from './crypto-currencies.service';
+import { CryptoCurrenciesService } from 'src/features/crypto-currencies/crypto-currencies.service';
 
 describe('CryptoCurrenciesService', () => {
   let service: CryptoCurrenciesService;

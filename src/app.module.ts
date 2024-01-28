@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { CryptoCurrenciesModule } from 'src/crypto-currencies/crypto-currencies.module';
+import { CryptoCurrenciesModule } from 'src/features/crypto-currencies/crypto-currencies.module';
 
 @Module({
   imports: [

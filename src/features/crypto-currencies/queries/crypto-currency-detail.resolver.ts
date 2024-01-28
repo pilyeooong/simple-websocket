@@ -1,6 +1,6 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { CryptoCurrenciesService } from 'src/crypto-currencies/crypto-currencies.service';
-import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
+import { CryptoCurrenciesService } from 'src/features/crypto-currencies/crypto-currencies.service';
+import { CryptoCurrency } from 'src/features/crypto-currencies/models/crypto-currency.model';
 
 @Resolver((_) => CryptoCurrency)
 export class CryptoCurrencyDetailResolver {

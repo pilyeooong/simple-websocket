@@ -1,7 +1,7 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
-import { CryptoCurrenciesService } from 'src/crypto-currencies/crypto-currencies.service';
+import { CryptoCurrency } from 'src/features/crypto-currencies/models/crypto-currency.model';
+import { CryptoCurrenciesService } from 'src/features/crypto-currencies/crypto-currencies.service';
 import { Inject } from '@nestjs/common';
 
 @Resolver((_) => CryptoCurrency)

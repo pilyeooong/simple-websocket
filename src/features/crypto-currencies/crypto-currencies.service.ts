@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
+import { CryptoCurrency } from 'src/features/crypto-currencies/models/crypto-currency.model';
 
 @Injectable()
 export class CryptoCurrenciesService {

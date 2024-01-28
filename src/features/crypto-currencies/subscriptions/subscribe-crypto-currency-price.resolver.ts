@@ -1,7 +1,7 @@
 import { Args, Resolver, Subscription } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { CryptoCurrency } from 'src/crypto-currencies/models/crypto-currency.model';
+import { CryptoCurrency } from 'src/features/crypto-currencies/models/crypto-currency.model';
 
 @Resolver((_) => CryptoCurrency)
 export class SubscribeCryptoCurrencyPriceResolver {
