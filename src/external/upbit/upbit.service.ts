@@ -3,6 +3,8 @@ import { uuid } from 'uuidv4';
 import { createHash } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
 import { HttpService } from '@nestjs/axios';
+import { catchError, firstValueFrom } from 'rxjs';
+import { AxiosError } from 'axios';
 
 @Injectable()
 export class UpbitService {
@@ -44,17 +46,26 @@ export class UpbitService {
     base: string;
     counter: string;
   }): Promise<number> {
-    const queryString = 'markets=KRW-BTC';
+    const queryString = `markets=${counter}-${base}`;
     const token = await this.generateAccessToken(queryString);
-
-    console.log(base, counter);
-
-    const response = await this.httpService
+    const response = this.httpService
       .get(`https://api.upbit.com/v1/ticker?${queryString}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .toPromise();
+      .pipe(
+        catchError((_) => {
+          throw new Error('Upbit API Exception');
+        }),
+      );
 
-    return 1;
+    const { data } = await firstValueFrom(response);
+    let price: number;
+
+    if (Array.isArray(data)) {
+      const priceDataObj = data[0];
+      price = priceDataObj['trade_price'] || 0;
+    }
+
+    return price;
   }
 }

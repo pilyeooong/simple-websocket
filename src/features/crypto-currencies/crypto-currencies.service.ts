@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CryptoCurrency } from 'src/features/crypto-currencies/models/crypto-currency.model';
+import { uuid } from 'uuidv4';
 
 @Injectable()
 export class CryptoCurrenciesService {
@@ -13,7 +14,7 @@ export class CryptoCurrenciesService {
     price?: number;
   }): CryptoCurrency {
     return {
-      id: 'id',
+      id: uuid(),
       symbol: base,
       base: base,
       counter: counter,
