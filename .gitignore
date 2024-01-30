@@ -37,4 +37,8 @@ lerna-debug.log*
 # workflows
 **/*/*.secrets
 
+# envionment variables
 .env
+
+# pg volume
+data/
