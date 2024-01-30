@@ -4,7 +4,6 @@ import { createHash } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
 import { HttpService } from '@nestjs/axios';
 import { catchError, firstValueFrom } from 'rxjs';
-import { AxiosError } from 'axios';
 
 @Injectable()
 export class UpbitService {

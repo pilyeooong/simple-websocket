@@ -15,4 +15,11 @@ describe('CryptoCurrenciesService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('should create dummy crypto currency object', () => {
+    const cryptoCurrencyObj = service.createDummy({});
+
+    console.log(cryptoCurrencyObj);
+    expect(cryptoCurrencyObj).not.toBeNull();
+  });
 });
