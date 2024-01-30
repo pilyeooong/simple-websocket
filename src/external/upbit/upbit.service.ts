@@ -39,13 +39,13 @@ export class UpbitService {
     return accessToken;
   }
 
-  async getCurrentPrice({
+  async getPriceData({
     base,
     counter,
   }: {
     base: string;
     counter: string;
-  }): Promise<number> {
+  }): Promise<object> {
     const queryString = `markets=${counter}-${base}`;
     const token = await this.generateAccessToken(queryString);
     const response = this.httpService
@@ -59,12 +59,23 @@ export class UpbitService {
       );
 
     const { data } = await firstValueFrom(response);
-    let price: number;
-
+    let priceData: object;
     if (Array.isArray(data)) {
-      const priceDataObj = data[0];
-      price = priceDataObj['trade_price'] || 0;
+      priceData = data[0];
     }
+
+    return priceData;
+  }
+
+  async getCurrentPrice({
+    base,
+    counter,
+  }: {
+    base: string;
+    counter: string;
+  }): Promise<number> {
+    const priceData = await this.getPriceData({ base, counter });
+    const price = priceData['trade_price'] || 0;
 
     return price;
   }
